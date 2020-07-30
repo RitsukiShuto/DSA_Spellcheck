@@ -1,5 +1,5 @@
 // Created by RitsukiShuto on 2020/07/30-13:06:35.
-// SpellCheck_Biunarysearch.c
+// SpellCheck_Binarysearch.c
 // Coding 'Shift JIS'
 //
 #include<stdio.h>
