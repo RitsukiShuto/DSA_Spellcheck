@@ -16,7 +16,7 @@ int main(void){
     int left, right, mid;       // 二分探索用
     int cnt = 0;                // スペルミスカウンタ
     int find = 0;
-    int Size_Of_Words;
+    int Size_of_words;
 
     FILE *fp_dict = fopen("dictionary.txt", "r");    // dictionary.txtのfp_dictを宣言
     FILE *fp_sct = fopen("script.txt", "r");
@@ -35,25 +35,15 @@ int main(void){
     start = clock();    // 測定開始
 
     while(fscanf(fp_sct, "%d", &word) == 1){
-        left = 0;
-        right = SIZE_OF_DICT - 1;
-
-        while(left < right){
-            mid = (left + right) / 2;
-
-            if (dict[mid] == word){
-                left = mid;
-                right = mid;
+        for(int i = 0; i < SIZE_OF_DICT; i++){
+            if(word == dict[i]){
                 find++;
-            }else if(dict[mid] < word){
-                left = mid + 1;
-            }else{
-                right = mid - 1;
+                break;
             }
         }
-        Size_Of_Words++;
-        cnt = Size_Of_Words - find;
-
+        
+        Size_of_words++;
+        cnt = Size_of_words - find;
     }
 
     /* 結果を表示 */
