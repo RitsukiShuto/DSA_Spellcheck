@@ -4,12 +4,13 @@
 //
 #include<stdio.h>
 #include<time.h>
+#define SIZE_OF_DICT 2000
 
 int main(void){
     /* ŠÔ‘ª’è—p */
     clock_t start, end;
 
-    int dict[2000];     // dictionary.txt‚ğŠi”[
+    int dict[SIZE_OF_DICT];     // dictionary.txt‚ğŠi”[
     int word;            // dict—á¦—p
 
     int left, right, mid;       // “ñ•ª’Tõ—p
@@ -22,7 +23,7 @@ int main(void){
 //    printf("%d\n", word);
 
     /* ”z—ñ‚Édictionary.txt‚ğŠi”[ */
-    for(int i = 0; i < 2000; i++){
+    for(int i = 0; i < SIZE_OF_DICT; i++){
         fscanf(fp_dict, "%d", &(dict[i]));
     }
 
@@ -33,7 +34,7 @@ int main(void){
 
     while(fscanf(fp_sct, "%d", &word) == 1){
         left = 0;
-        right = 2000;
+        right = SIZE_OF_DICT - 1;
 
         while(left < right){
             mid = (left + right) / 2;
