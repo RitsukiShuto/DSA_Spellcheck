@@ -33,7 +33,6 @@ int main(void){
     /* スペルチェック開始 */
     start = clock();    // 測定開始
 
-    //// BUG: 二分探索法のアルゴリズムがおかしい
     while(fscanf(fp_sct, "%d", &word) == 1){
         int Match_Words_Flag = 0;
 
