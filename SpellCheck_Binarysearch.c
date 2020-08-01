@@ -8,15 +8,14 @@
 
 int main(void){
     /* 時間測定用 */
-    clock_t start, end;
+    clock_t start, end;         // 時間計測用
 
     int dict[SIZE_OF_DICT];     // dictionary.txtを格納
-    int word;            // dict例示用
+    int word;                   // dict例示用
 
     int left, right, mid;       // 二分探索用
-    int cnt = 0;                // スペルミスカウンタ
-    int find = 0;
-    int Size_Of_Words;
+
+    int MissMatch_Words = 0;    // スペルミスカウンタ
 
     FILE *fp_dict = fopen("dictionary.txt", "r");    // dictionary.txtのfp_dictを宣言
     FILE *fp_sct = fopen("script.txt", "r");
@@ -34,30 +33,35 @@ int main(void){
     /* スペルチェック開始 */
     start = clock();    // 測定開始
 
+    //// BUG: 二分探索法のアルゴリズムがおかしい
     while(fscanf(fp_sct, "%d", &word) == 1){
+        int Match_Words_Flag = 0;
+
         left = 0;
         right = SIZE_OF_DICT - 1;
 
-        while(left < right){
+        while(left <= right){
             mid = (left + right) / 2;
 
             if (dict[mid] == word){
-                left = mid;
-                right = mid;
-                find++;
+                Match_Words_Flag = 1;
+                break;
+
             }else if(dict[mid] < word){
                 left = mid + 1;
+
             }else{
                 right = mid - 1;
             }
         }
-        Size_Of_Words++;
-        cnt = Size_Of_Words - find;
 
+        if(Match_Words_Flag == 0){
+            MissMatch_Words++;
+        }
     }
 
     /* 結果を表示 */
-    printf("スペルミス件数 = %d件\n", cnt);
+    printf("スペルミス件数 = %d件\n", MissMatch_Words);
 
     fclose(fp_dict);
     fclose(fp_sct);
